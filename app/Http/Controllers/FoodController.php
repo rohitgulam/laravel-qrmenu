@@ -34,7 +34,7 @@ class FoodController extends Controller
             $formFields['image'] = $request->file('image')->store('images', 'public');
         }
 
-        return Food::create($request->all());
+        return Food::create($formFields);
     }
 
     /**
