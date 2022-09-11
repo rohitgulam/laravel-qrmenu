@@ -25,10 +25,15 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $formFields = $request->validate([
             'name' => 'required',
             'price' => 'required'
         ]);
+
+        if($request->hasFile('image')){
+            $formFields['image'] = $request->file('image')->store('images', 'public');
+        }
+
         return Food::create($request->all());
     }
 
